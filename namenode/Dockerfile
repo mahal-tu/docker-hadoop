@@ -1,4 +1,4 @@
-FROM bde2020/hadoop-base:master
+FROM bde2020/hadoop-base:h340
 
 LABEL MAINTAINER="Ivan Ermilov <ivan.s.ermilov@gmail.com>"
 

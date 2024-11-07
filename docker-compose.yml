@@ -1,13 +1,13 @@
 services:
   namenode:
-    image: bde2020/hadoop-namenode:latest
+    image: bde2020/hadoop-namenode:h340
     container_name: namenode
     restart: always
     ports:
       - 9870:9870
       - 9000:9000
     volumes:
-      - hadoop_namenode:/hadoop/dfs/name
+      - h340_namenode:/hadoop/dfs/name
       - /home/mahal/research/kaggle-ecommerce/data:/kaggle-data
     environment:
       - CLUSTER_NAME=test
@@ -15,29 +15,29 @@ services:
       - ./hadoop.env
 
   datanode1:
-    image: bde2020/hadoop-datanode:latest
+    image: bde2020/hadoop-datanode:h340
     container_name: datanode1
     restart: always
     volumes:
-      - hadoop_datanode1:/hadoop/dfs/data
+      - h340_datanode1:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
   
   datanode2:
-    image: bde2020/hadoop-datanode:latest
+    image: bde2020/hadoop-datanode:h340
     container_name: datanode2
     restart: always
     volumes:
-      - hadoop_datanode2:/hadoop/dfs/data
+      - h340_datanode2:/hadoop/dfs/data
     environment:
       SERVICE_PRECONDITION: "namenode:9870"
     env_file:
       - ./hadoop.env
 
   resourcemanager:
-    image: bde2020/hadoop-resourcemanager:latest
+    image: bde2020/hadoop-resourcemanager:h340
     container_name: resourcemanager
     restart: always
     ports:
@@ -49,7 +49,7 @@ services:
       - ./hadoop.env
 
   nodemanager1:
-    image: bde2020/hadoop-nodemanager:latest
+    image: bde2020/hadoop-nodemanager:h340
     container_name: nodemanager
     restart: always
     environment:
@@ -58,18 +58,18 @@ services:
       - ./hadoop.env
   
   historyserver:
-    image: bde2020/hadoop-historyserver:latest
+    image: bde2020/hadoop-historyserver:h340
     container_name: historyserver
     restart: always
     environment:
       SERVICE_PRECONDITION: "namenode:9000 namenode:9870 datanode1:9864 datanode2:9864 resourcemanager:8088"
     volumes:
-      - hadoop_historyserver:/hadoop/yarn/timeline
+      - h340_historyserver:/hadoop/yarn/timeline
     env_file:
       - ./hadoop.env
   
 volumes:
-  hadoop_namenode:
-  hadoop_datanode1:
-  hadoop_datanode2:
-  hadoop_historyserver:
+  h340_namenode:
+  h340_datanode1:
+  h340_datanode2:
+  h340_historyserver:

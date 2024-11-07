@@ -1,10 +1,10 @@
-FROM debian:12
+FROM ubuntu:22.04
 
 LABEL MAINTAINER="Ivan Ermilov <ivan.s.ermilov@gmail.com>"
 LABEL MAINTAINER="Giannis Mouchakis <gmouchakis@iit.demokritos.gr>"
 
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-      openjdk-17-jdk \
+      openjdk-11-jdk \
       net-tools \
       curl \
       netcat-traditional \
@@ -12,7 +12,7 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --no-ins
       libsnappy-dev \
     && rm -rf /var/lib/apt/lists/*
       
-ENV JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64/
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64/
 
 RUN curl -O https://dist.apache.org/repos/dist/release/hadoop/common/KEYS
 
