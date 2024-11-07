@@ -8,7 +8,8 @@ services:
       - 9000:9000
     volumes:
       - h340_namenode:/hadoop/dfs/name
-      - /home/mahal/research/kaggle-ecommerce/data:/kaggle-data
+      - ../data:/kaggle-data
+      - ../src:/kaggle-src
     environment:
       - CLUSTER_NAME=test
     env_file:
